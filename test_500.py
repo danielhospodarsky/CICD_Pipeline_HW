@@ -20,6 +20,7 @@
 #A pytest is written and passes to verify the error-handling and custom error page functionality
 
 import pytest
+from app import app
 
 @pytest.fixture
 def client():
