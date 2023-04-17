@@ -22,18 +22,14 @@
 import pytest
 from app import app
 
-@pytest.fixture
-def client():
-    app = Flask(__name__)
-    # Register custom error handling for 404 errors
-    @app.errorhandler(404)
-    def page_not_found(error):
-        return "Custom 404 error page", 404
+class TestErrorPages:
+    @pytest.fixture
+    def client(self):
+        app.config['TESTING'] = True
+        client = app.test_client()
+        return client
 
-    client = app.test_client()
-    return client
-
-def test_custom_404_page(client):
-    response = client.get('/non_existent_page')
-    assert response.status_code == 404
-    assert b'Custom 404 error page' in response.data
+    def test_custom_404_page(self, client):
+        response = client.get('/non_existent_page')
+        assert response.status_code == 404
+        assert b'Custom 404 error page' in response.data
