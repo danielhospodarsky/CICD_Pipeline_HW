@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block body %}
+
+<hr />
+<main>
+  <div class="row">
+    <div class="col-4">
+      <img
+        class="img-fluid"
+        src="{{ url_for('static', filename='images/oh-no.png') }}"
+        alt="505 error page"
+      />
+    </div>
+    <div class="col-8">
+      <h2 class="mt-5">Oh Snap! We have a problem!</h2>
+      <p>
+        We are currently working to fix the problem. Check back soon!
+      </p>
+    </div>
+  </div>
+</main>
+{% endblock %}
